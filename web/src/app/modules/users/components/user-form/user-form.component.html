@@ -1,0 +1,72 @@
+<div>
+  <div>
+    <div class="t-head">
+      <h2 *ngIf="mode === 'CREATE'">Crear Nuevo Usuario</h2>
+      <h2 *ngIf="mode === 'UPDATE'">Actualizar Usuario</h2>
+      <button (click)="closeModal()" class="close-button">&times;</button>
+    </div>
+
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="form">
+      <div class="form-group">
+        <label>Nombre</label>
+        <input
+          type="text"
+          formControlName="name"
+          placeholder="Ingrese el nombre"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="ejemplo@novacare.com"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input
+          type="password"
+          formControlName="password"
+          placeholder="111111"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Rol</label>
+        <select formControlName="rol_id" required>
+          <option value="">Seleccione un rol</option>
+          <option value="1">Administrador</option>
+          <option value="2">Veterinario</option>
+          <option value="3">Recepcionista</option>
+        </select>
+      </div>
+
+      <div *ngIf="mode === 'UPDATE'" class="form-group">
+        <label>Estado</label>
+        <select formControlName="status" required>
+          <option value="A">Activo</option>
+          <option value="I">Inactivo</option>
+        </select>
+      </div>
+
+      <div class="t-foot">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="userForm.invalid"
+        >
+          {{ mode === "CREATE" ? "Crear Usuario" : "Actualizar Usuario" }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

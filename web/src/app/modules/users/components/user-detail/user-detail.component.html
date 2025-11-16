@@ -1,0 +1,37 @@
+<div id="detailModal">
+  <div>
+    <div class="modal-header">
+      <h2>Detalles del Usuario</h2>
+      <button class="close-button" (click)="closeModal()">&times;</button>
+    </div>
+    <div class="modal-body1">
+      <div class="detail-item">
+        <div class="detail-label">Nombre</div>
+        <div class="detail-value" id="detailName">{{ user.name }}</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Email</div>
+        <div class="detail-value" id="detailEmail">{{ user.email }}</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Rol</div>
+        <div class="detail-value" id="detailRole">
+          {{ user.rol_id | userRole }}
+        </div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Estado</div>
+        <div class="detail-value" id="detailStatus">Activo</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Fecha de Creación</div>
+        <div class="detail-value" id="detailDate">
+          {{ user.created_at | userCreated }}
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" (click)="closeModal()">Cerrar</button>
+    </div>
+  </div>
+</div>

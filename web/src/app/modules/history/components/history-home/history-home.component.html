@@ -1,0 +1,51 @@
+<section id="historias-section" class="content-section">
+  <div class="section-header">
+    <div class="search-bar">
+      <svg
+        class="search-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+      >
+        <circle cx="11" cy="11" r="8" stroke-width="2" />
+        <path d="m21 21-4.35-4.35" stroke-width="2" stroke-linecap="round" />
+      </svg>
+      <input
+        type="text"
+        placeholder="Buscar mascotas..."
+        class="search-input"
+      />
+    </div>
+  </div>
+
+  <div class="patients-grid">
+    <ng-container *ngFor="let history of historyList">
+      <div class="patient-card">
+        <div class="patient-header">
+          <div class="patient-avatar">{{ history.pet_name[0] }}</div>
+          <div class="patient-info">
+            <h3>{{ history.pet_name }}</h3>
+            <p>{{ history.breed }} • {{ history.age }} años</p>
+          </div>
+        </div>
+        <div class="patient-details">
+          <div class="detail-row">
+            <span class="label">Dueño:</span>
+            <span> {{ history.client_name }} </span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Especie</span>
+            <span> {{ history.specie }} </span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Genero</span>
+            <span class="highlight"> {{ history.gender }} </span>
+          </div>
+        </div>
+        <button (click)="viewDetail(history)" class="btn btn-outline btn-block">
+          Ver Historia Completa
+        </button>
+      </div>
+    </ng-container>
+  </div>
+</section>

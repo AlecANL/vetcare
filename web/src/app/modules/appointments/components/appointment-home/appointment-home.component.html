@@ -1,0 +1,161 @@
+<section id="usuarios-section" class="content-section">
+  <div class="section-header">
+    <div class="search-bar">
+      <svg
+        class="search-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+      >
+        <circle cx="11" cy="11" r="8" stroke-width="2" />
+        <path d="m21 21-4.35-4.35" stroke-width="2" stroke-linecap="round" />
+      </svg>
+      <input
+        type="text"
+        placeholder="Buscar usuarios..."
+        class="search-input"
+      />
+    </div>
+    <button
+      (click)="addNewAppointment()"
+      class="btn btn-primary"
+      id="btn-nuevo-usuario"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <line
+          x1="12"
+          y1="5"
+          x2="12"
+          y2="19"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <line
+          x1="5"
+          y1="12"
+          x2="19"
+          y2="12"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+      Nuevo Usuario
+    </button>
+  </div>
+
+  <div class="container">
+    <table>
+      <thead>
+        <tr>
+          <th>FECHA Y HORA</th>
+          <th>NOMBRE</th>
+          <th>EMAIL</th>
+          <th>TELEFONO</th>
+          <th>MASCOTA</th>
+          <th>VETERINARIO</th>
+          <th>ESTADO</th>
+          <th>ACCIONES</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container
+          *ngFor="let appointment of appointmentList; let i = index"
+        >
+          <tr>
+            <td>
+              <strong>
+                {{ appointment.appointment.date | userCreated }}
+                {{ appointment.appointment.hour }}
+              </strong>
+            </td>
+            <td>{{ appointment.client.name }}</td>
+            <td>{{ appointment.client.email || "-" }}</td>
+            <td>+502 {{ appointment.client.phone }}</td>
+            <td>{{ appointment.pet.name }}</td>
+            <td>{{ appointment.veterinarian.name }}</td>
+            <td>
+              <span
+                [ngClass]="[
+                  'badge',
+                  statusClassNameMap[appointment.appointment.status]
+                ]"
+              >
+                <ng-container>
+                  {{ appointment.appointment.status | uppercase }}
+                </ng-container>
+              </span>
+            </td>
+            <td class="actions-cell">
+              <button class="actions-button" (click)="toggleTooltip($event, i)">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </button>
+              <div class="tooltip" [class.active]="currentOpenIndex === i">
+                <div
+                  class="tooltip-item"
+                  (click)="viewAppointment($event, appointment)"
+                >
+                  <svg
+                    class="icon"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    ></path>
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    ></path>
+                  </svg>
+                  Ver
+                </div>
+                <div
+                  class="tooltip-item"
+                  (click)="addNewHistory($event, appointment)"
+                >
+                  <svg
+                    class="icon"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                    ></path>
+                  </svg>
+                  Crear Historico
+                </div>
+                <div
+                  class="tooltip-item"
+                  (click)="addInvoice($event, appointment)"
+                >
+                  <svg
+                    class="icon"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                    ></path>
+                  </svg>
+                  Facturar
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</section>

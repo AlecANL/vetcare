@@ -1,0 +1,83 @@
+<section id="usuarios-section" class="content-section">
+  <div class="section-header">
+    <div class="search-bar">
+      <svg
+        class="search-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+      >
+        <circle cx="11" cy="11" r="8" stroke-width="2" />
+        <path d="m21 21-4.35-4.35" stroke-width="2" stroke-linecap="round" />
+      </svg>
+      <input
+        type="text"
+        placeholder="Buscar usuarios..."
+        class="search-input"
+      />
+    </div>
+  </div>
+
+  <div class="container">
+    <table>
+      <thead>
+        <tr>
+          <th>Nº Factura</th>
+          <th>Fecha</th>
+          <th>Cliente</th>
+          <th>Concepto</th>
+          <th>Monto</th>
+          <th>Estado</th>
+          <!-- <th>Acciones</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let invoice of invoiceList; let i = index">
+          <tr>
+            <td>
+              <strong> #F-{{ invoice.receipt_id }} </strong>
+            </td>
+            <td>{{ invoice.receipt_date | userCreated }}</td>
+            <td>
+              {{ invoice.client_name }}
+            </td>
+            <td>
+              {{ invoice.appointment_comments }}
+            </td>
+            <td>${{ invoice.receipt_total }}</td>
+            <td><span class="badge badge-green">Pagada</span></td>
+            <!-- <td class="actions-cell">
+              <button class="actions-button" (click)="toggleTooltip($event, i)">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </button>
+              <div class="tooltip" [class.active]="currentOpenIndex === i">
+                <div class="tooltip-item" (click)="viewDetail(invoice)">
+                  <svg
+                    class="icon"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    ></path>
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    ></path>
+                  </svg>
+                  Ver
+                </div>
+              </div>
+            </td> -->
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</section>

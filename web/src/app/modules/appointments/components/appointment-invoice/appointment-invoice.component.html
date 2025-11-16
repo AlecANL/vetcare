@@ -1,0 +1,115 @@
+<div class="content">
+  <div class="header">
+    <h1>Generar Factura</h1>
+    <p>Facturación automática para consultas, tratamientos y productos</p>
+  </div>
+
+  <div id="alertContainer"></div>
+
+  <div class="main-content">
+    <div class="cont">
+      <div class="section">
+        <h2>📋 Datos de la Factura</h2>
+        <div class="form-group">
+          <label>Cliente</label>
+          <div class="client-info">
+            <p><strong>Nombre:</strong> {{ appointment.client.name }}</p>
+            <p><strong>Telefono:</strong> {{ appointment.client.phone }}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Cita</label>
+          <div class="client-info">
+            <p><strong>Estado:</strong> {{ appointment.appointment.status }}</p>
+            <p><strong>Tipo:</strong> {{ appointment.appointment.type }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>🛒 Agregar Productos/Servicios</h2>
+        <form [formGroup]="form" class="form-group">
+          <label>Seleccionar Producto</label>
+          <select formControlName="product" id="productSelect">
+            <option value="">Seleccione un producto...</option>
+            <ng-container *ngFor="let product of products">
+              <option [value]="product.id">
+                {{ product.name }} - ${{ product.price }}
+              </option>
+            </ng-container>
+          </select>
+        </form>
+        <button class="btn btn-primary" (click)="addToInvoice()">
+          + Agregar Producto
+        </button>
+      </div>
+
+      <div class="section">
+        <h2>📦 Productos en la Factura</h2>
+        <div id="productsList" class="products-list">
+          <div *ngIf="productsToInvoice.length > 0">
+            <p *ngFor="let product of productsToInvoice">
+              {{ product.name }} - ${{ product.price }}
+            </p>
+          </div>
+          <div *ngIf="productsToInvoice.length <= 0" class="empty-state">
+            <p>No hay productos agregados</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section">
+        <h2>💰 Resumen de Factura</h2>
+        <div class="summary">
+          <div class="summary-row">
+            <span>Productos:</span>
+            <span id="itemCount"> {{ productsToInvoice.length }} </span>
+          </div>
+          <div class="summary-row">
+            <span>TOTAL:</span>
+            <span id="total">${{ total }} </span>
+          </div>
+        </div>
+        <button class="btn btn-success" (click)="saveToInvoice()">
+          💾 Generar Factura
+        </button>
+        <button
+          class="btn btn-primary"
+          (click)="clearInvoice()"
+          style="background: #6c757d; margin-top: 10px"
+        >
+          🔄 Limpiar Todo
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="facturaPreview" class="factura-preview">
+    <div class="factura-header">
+      <h1>FACTURA</h1>
+      <p>VetCare - Clínica Veterinaria</p>
+      <p>Factura #: <span id="receiptNumber"></span></p>
+      <p>Fecha: <span id="receiptDate"></span></p>
+    </div>
+    <div>
+      <h3>Cliente</h3>
+      <p id="clientInfo"></p>
+    </div>
+    <table class="factura-table">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Precio Unit.</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody id="facturaItems"></tbody>
+    </table>
+    <div class="factura-footer">
+      <strong>TOTAL: Q<span id="facturaTotal"></span></strong>
+    </div>
+  </div>
+</div>

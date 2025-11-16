@@ -1,0 +1,114 @@
+<div class="header">
+  <div class="header-content">
+    <a (click)="closeModal()" class="back-btn">← Volver a Citas</a>
+    <span
+      [ngClass]="[
+        'status-badge',
+        statusClassNameMap[appointment.appointment.status]
+      ]"
+    >
+      {{ appointment.appointment.status | uppercase }}
+    </span>
+  </div>
+</div>
+
+<div class="content">
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Información de la Mascota</h2>
+    </div>
+    <div class="card-body">
+      <div class="pet-info">
+        <div class="pet-avatar">{{ appointment.pet.name[0] }}</div>
+        <div class="pet-details">
+          <h3 class="pet-name">{{ appointment.pet.name }}</h3>
+          <p class="pet-breed">
+            {{ appointment.pet.breed }} • {{ appointment.pet.age }} años
+          </p>
+          <div class="pet-meta">
+            <span class="meta-item">⚥ {{ appointment.pet.gender }}</span>
+            <span class="meta-item">⚖️ {{ appointment.pet.weight }} kg</span>
+            <span class="meta-item">🏥 ID: #{{ appointment.pet.id }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Información del Cliente</h2>
+    </div>
+    <div class="card-body">
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="info-label">Nombre Completo</span>
+          <span class="info-value"> {{ appointment.client.name }} </span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Teléfono</span>
+          <span class="info-value"> {{ appointment.client.phone }} </span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Email</span>
+          <span class="info-value">{{ appointment.client.email }}</span>
+        </div>
+        <!-- <div class="info-item">
+          <span class="info-label">Dirección</span>
+          <span class="info-value">Zona 10, Guatemala</span>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Detalles de la Cita</h2>
+    </div>
+    <div class="card-body">
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="info-label">Fecha</span>
+          <span class="info-value">
+            {{ appointment.appointment.date | friendlyDate }}
+          </span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Hora</span>
+          <span class="info-value">
+            {{ appointment.appointment.hour | friendlyHour }}
+          </span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Tipo de Consulta</span>
+          <span class="info-value"> {{ appointment.appointment.type }} </span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Estado</span>
+          <span class="info-value">{{ appointment.appointment.status }}</span>
+        </div>
+      </div>
+
+      <div class="motivo-box">
+        <h4>Motivo de la Consulta</h4>
+        <p>
+          {{ appointment.appointment.comments }}
+        </p>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="actions">
+        <button class="btn btn-primary" onclick="editarCita()">
+          ✏️ Editar Cita
+        </button>
+        <button class="btn btn-secondary" onclick="cambiarEstado()">
+          ✓ Marcar como Completada
+        </button>
+        <button class="btn btn-danger" onclick="cancelarCita()">
+          ✕ Cancelar Cita
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="content">
+  <div class="header">
+    <h1>Historial Clínico de " {{ history.pet_name }} "</h1>
+    <div class="pet-info">
+      <p><strong>Dueño:</strong> {{ history.client_name }}</p>
+      <p>
+        <strong>Especie:</strong> {{ history.specie }} &nbsp; | &nbsp;
+        <strong>Raza:</strong> {{ history.breed }}
+      </p>
+      <p>
+        <strong>Edad:</strong> {{ history.age }} años &nbsp; | &nbsp;
+        <strong>Sexo:</strong> {{ history.gender }}
+      </p>
+    </div>
+  </div>
+
+  <div class="history-list">
+    <ng-container *ngFor="let history of history.histories; let idx = index">
+      <div (click)="toggleRecord(idx)">
+        <div class="record">
+          <div class="record-header">
+            <h3>10 Marzo 2025</h3>
+            <span class="record-date">#ID {{ history.history_id }}</span>
+          </div>
+          <div *ngIf="openIndex === idx" class="record-content">
+            <p><strong>Diagnóstico:</strong> {{ history.diagnosis }}</p>
+            <p><strong>Tratamiento:</strong> {{ history.treatment }}</p>
+            <p><strong>Comentarios:</strong> {{ history.comments }}</p>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

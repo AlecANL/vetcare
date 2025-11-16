@@ -1,0 +1,93 @@
+.content {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  width: 600px;
+}
+
+.header {
+  background: #667eea;
+  background: linear-gradient(
+    90deg,
+    rgba(102, 126, 234, 1) 0%,
+    rgb(2, 75, 194) 100%
+  );
+  color: white;
+  padding: 20px 30px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.pet-info {
+  margin-top: 8px;
+  font-size: 15px;
+}
+
+.history-list {
+  padding: 25px 30px;
+}
+
+.record {
+  background: #f9f9f9;
+  border-left: 5px solid #6a82fb;
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.record:hover {
+  transform: scale(1.02);
+}
+
+.record-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.record-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #444;
+}
+
+.record-date {
+  font-size: 15px;
+  color: #6a82fb;
+  font-weight: 600;
+}
+
+.record-content {
+  margin-top: 10px;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.record-content p {
+  margin: 6px 0;
+  line-height: 1.5;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+::ng-deep ngb-modal-window.history-detail {
+  .modal-content {
+    padding: 0 !important;
+    margin: 0 auto;
+    border-radius: 24px;
+  }
+}

@@ -1,0 +1,77 @@
+<div class="modal1">
+  <div class="modal-header">
+    <h2>Nueva Historia Clínica</h2>
+    <button class="close-btn" (click)="closeModal()">×</button>
+  </div>
+
+  <form [formGroup]="form" id="clinicalForm">
+    <div class="modal-body1">
+      <div class="form-group">
+        <label>Mascota <span class="required">*</span></label>
+        <div class="search-input">
+          {{ appointment.pet.name }} - {{ appointment.pet.specie }} ({{
+            appointment.client.name
+          }})
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Fecha <span class="required">*</span></label>
+        <input
+          aria-label="date"
+          formControlName="date"
+          type="date"
+          id="date"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Diagnóstico <span class="required">*</span></label>
+        <textarea
+          formControlName="diagnosis"
+          id="diagnosis"
+          placeholder="Describa el diagnóstico o hallazgos principales..."
+          required
+        ></textarea>
+        <p class="helper-text">
+          Ejemplo: Gastroenteritis aguda, deshidratación leve
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label>Tratamiento <span class="required">*</span></label>
+        <textarea
+          formControlName="treatment"
+          id="treatment"
+          placeholder="Describa el tratamiento prescrito..."
+          required
+        ></textarea>
+        <p class="helper-text">
+          Ejemplo: Metronidazol 250mg c/12h x 7 días, dieta blanda
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label>Comentarios</label>
+        <textarea
+          formControlName="comments"
+          id="comments"
+          placeholder="Observaciones adicionales, seguimiento, recomendaciones..."
+        ></textarea>
+        <p class="helper-text">
+          Información adicional relevante para la historia
+        </p>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-cancel" (click)="closeModal()">
+        Cancelar
+      </button>
+      <button (click)="addHistory()" type="submit" class="btn btn-save">
+        Guardar Historia
+      </button>
+    </div>
+  </form>
+</div>

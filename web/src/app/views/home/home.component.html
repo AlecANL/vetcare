@@ -1,0 +1,298 @@
+<aside class="sidebar">
+  <div class="logo-container">
+    🐾
+    <h1 class="logo-text">VetCare</h1>
+  </div>
+  <nav class="nav-menu">
+    <button
+      routerLink="/home"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="nav-item"
+      data-section="dashboard"
+    >
+      <svg
+        class="nav-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+      >
+        <rect
+          x="3"
+          y="3"
+          width="7"
+          height="7"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <rect
+          x="14"
+          y="3"
+          width="7"
+          height="7"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <rect
+          x="14"
+          y="14"
+          width="7"
+          height="7"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <rect
+          x="3"
+          y="14"
+          width="7"
+          height="7"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      <span>Dashboard</span>
+    </button>
+
+    <button
+      routerLink="/home/appointments"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="nav-item"
+      data-section="citas"
+    >
+      <svg
+        class="nav-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+      >
+        <rect
+          x="3"
+          y="4"
+          width="18"
+          height="18"
+          rx="2"
+          ry="2"
+          stroke-width="2"
+        />
+        <line
+          x1="16"
+          y1="2"
+          x2="16"
+          y2="6"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <line
+          x1="8"
+          y1="2"
+          x2="8"
+          y2="6"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <line x1="3" y1="10" x2="21" y2="10" stroke-width="2" />
+      </svg>
+      <span>Gestión de Citas</span>
+    </button>
+
+    <button
+      *ngIf="user.role !== 3"
+      routerLink="/home/history"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="nav-item"
+      data-section="historias"
+    >
+      <svg
+        class="nav-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+      >
+        <path
+          d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <polyline
+          points="14 2 14 8 20 8"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <line
+          x1="16"
+          y1="13"
+          x2="8"
+          y2="13"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <line
+          x1="16"
+          y1="17"
+          x2="8"
+          y2="17"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+      <span>Historias Clínicas</span>
+    </button>
+
+    <button
+      routerLink="/home/invoice"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="nav-item"
+      data-section="facturacion"
+    >
+      <svg
+        class="nav-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+      >
+        <rect
+          x="1"
+          y="4"
+          width="22"
+          height="16"
+          rx="2"
+          ry="2"
+          stroke-width="2"
+        />
+        <line x1="1" y1="10" x2="23" y2="10" stroke-width="2" />
+      </svg>
+      <span>Facturación</span>
+    </button>
+
+    <button
+      routerLink="/home/stock"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="nav-item"
+      data-section="inventario"
+    >
+      <svg
+        class="nav-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+      >
+        <path
+          d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <polyline
+          points="3.27 6.96 12 12.01 20.73 6.96"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <line
+          x1="12"
+          y1="22.08"
+          x2="12"
+          y2="12"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+      <span>Inventario</span>
+    </button>
+
+    <div *ngIf="user.role === 1" class="nav-divider"></div>
+
+    <button
+      *ngIf="user.role === 1"
+      routerLink="/home/users"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="nav-item"
+      data-section="usuarios"
+    >
+      <svg
+        class="nav-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+      >
+        <path
+          d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <circle
+          cx="9"
+          cy="7"
+          r="4"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M23 21v-2a4 4 0 0 0-3-3.87"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M16 3.13a4 4 0 0 1 0 7.75"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      <span>Gestión de Usuarios</span>
+    </button>
+  </nav>
+</aside>
+
+<main class="main-content">
+  <header class="header">
+    <div class="header-left">
+      <h2 class="page-title">Dashboard</h2>
+    </div>
+    <div class="header-right">
+      <button class="btn-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path
+            d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M13.73 21a2 2 0 0 1-3.46 0"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+      <div *ngIf="user.role !== 1" class="user-profile">
+        <span>{{ user.role === 2 ? "Dr" : "Rec" }}. {{ user.name }}</span>
+        <div class="avatar">{{ user.name.slice(0, 2) | uppercase }}</div>
+        <button (click)="logOut()" class="btn btn-dark">Cerrar Session</button>
+      </div>
+      <div *ngIf="user.role === 1" class="user-profile">
+        <span>Adm. {{ user.name }} </span>
+        <div class="avatar">{{ user.name.slice(0, 2) | uppercase }}</div>
+        <button (click)="logOut()" class="btn btn-dark">Cerrar Session</button>
+      </div>
+    </div>
+  </header>
+  <article class="content">
+    <router-outlet></router-outlet>
+  </article>
+</main>

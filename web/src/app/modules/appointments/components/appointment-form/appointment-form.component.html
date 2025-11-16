@@ -1,0 +1,293 @@
+<div class="content">
+  <div class="header">
+    <h1>Registro de Cita</h1>
+    <p>Complete el proceso paso a paso para agendar su cita</p>
+  </div>
+
+  <div class="progress-bar">
+    <div
+      [class.active]="currentStep === 1"
+      [class.completed]="currentStep > 1"
+      class="progress-step active"
+      data-step="1"
+    >
+      <div class="step-circle">1</div>
+      <div class="step-label">Cliente</div>
+    </div>
+    <div
+      [class.completed]="currentStep > 2"
+      [class.active]="currentStep === 2"
+      class="progress-step"
+      data-step="2"
+    >
+      <div class="step-circle">2</div>
+      <div class="step-label">Mascota</div>
+    </div>
+    <div
+      [class.completed]="currentStep > 3"
+      [class.active]="currentStep === 3"
+      class="progress-step"
+      data-step="3"
+    >
+      <div class="step-circle">3</div>
+      <div class="step-label">Cita</div>
+    </div>
+  </div>
+
+  <div class="form-content">
+    <form
+      *ngIf="currentStep === 1"
+      [formGroup]="formStep1"
+      [class.active]="currentStep === 1"
+      class="step-content"
+      data-step="1"
+    >
+      <h2 class="step-title">Información del Cliente</h2>
+      <p class="step-description">Ingrese los datos del dueño de la mascota</p>
+
+      <div class="form-group">
+        <label>Nombre Completo <span class="required">*</span></label>
+        <input
+          formControlName="name"
+          type="text"
+          id="clienteNombre"
+          placeholder="Ej: Juan Pérez"
+          required
+        />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Teléfono <span class="required">*</span></label>
+          <input
+            formControlName="phone"
+            maxlength="6"
+            type="tel"
+            id="clienteTelefono"
+            placeholder="Ej: 5555-1234"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input
+            formControlName="email"
+            type="email"
+            id="clienteEmail"
+            placeholder="ejemplo@correo.com"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Dirección</label>
+        <input
+          formControlName="address"
+          type="text"
+          id="clienteDireccion"
+          placeholder="Dirección completa"
+        />
+      </div>
+
+      <div class="button-group">
+        <button class="btn-next" (click)="nextStep(1)">Siguiente →</button>
+      </div>
+    </form>
+
+    <form
+      *ngIf="currentStep === 2"
+      [class.active]="currentStep === 2"
+      [formGroup]="formStep2"
+      class="step-content"
+      data-step="2"
+    >
+      <h2 class="step-title">Información de la Mascota</h2>
+      <p class="step-description">Registre los datos de su mascota</p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nombre de la Mascota <span class="required">*</span></label>
+          <input
+            formControlName="name"
+            type="text"
+            id="mascotaNombre"
+            placeholder="Ej: Rocky"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label>Especie <span class="required">*</span></label>
+          <select formControlName="specie" id="mascotaEspecie" required>
+            <option value="">Seleccione...</option>
+            <option value="1">Perro</option>
+            <option value="2">Gato</option>
+            <option value="3">Ave</option>
+            <option value="4">Roedor</option>
+            <option value="5">Reptil</option>
+            <option value="6">Otro</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Raza <span class="required">*</span></label>
+          <input
+            formControlName="breed"
+            type="text"
+            id="mascotaRaza"
+            placeholder="Ej: Labrador"
+          />
+        </div>
+        <div class="form-group">
+          <label>Edad <span class="required">*</span></label>
+          <input
+            formControlName="age"
+            type="text"
+            id="mascotaEdad"
+            placeholder="Ej: 3 años"
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Sexo <span class="required">*</span></label>
+          <select formControlName="gender" id="mascotaSexo">
+            <option value="">Seleccione...</option>
+            <option value="1">Macho</option>
+            <option value="2">Hembra</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Peso (kg) <span class="required">*</span></label>
+          <input
+            formControlName="weight"
+            type="number"
+            id="mascotaPeso"
+            placeholder="Ej: 15"
+            step="0.1"
+          />
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button class="btn-prev" (click)="prevStep(2)">← Anterior</button>
+        <button class="btn-next" (click)="nextStep(2)">Siguiente →</button>
+      </div>
+    </form>
+
+    <form
+      *ngIf="currentStep === 3"
+      [class.active]="currentStep === 3"
+      [formGroup]="formStep3"
+      class="step-content"
+      data-step="3"
+    >
+      <h2 class="step-title">Agendar Cita</h2>
+      <p class="step-description">
+        Seleccione fecha, hora y motivo de la consulta
+      </p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Fecha <span class="required">*</span></label>
+          <input
+            aria-label="date"
+            formControlName="date"
+            type="date"
+            id="citaFecha"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label>Hora <span class="required">*</span></label>
+          <input
+            aria-label="hour"
+            formControlName="hour"
+            type="time"
+            id="citaHora"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Tipo de Consulta <span class="required">*</span></label>
+        <select formControlName="type" id="citaTipo" required>
+          <option value="">Seleccione...</option>
+          <option value="1">Consulta General</option>
+          <option value="2">Vacunación</option>
+          <option value="3">Cirugía</option>
+          <option value="4">Emergencia</option>
+          <option value="5">Seguimiento</option>
+          <option value="6">Estética</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Motivo de la Consulta</label>
+        <textarea
+          formControlName="comments"
+          id="citaMotivo"
+          placeholder="Describa brevemente el motivo de su visita..."
+        ></textarea>
+      </div>
+
+      <div class="button-group">
+        <button class="btn-prev" (click)="prevStep(3)">← Anterior</button>
+        <button class="btn-submit" (click)="submitForm()">
+          Confirmar Cita ✓
+        </button>
+      </div>
+    </form>
+
+    <div
+      *ngIf="currentStep === 4"
+      [class.active]="currentStep === 4"
+      class="step-content"
+      data-step="4"
+    >
+      <div class="success-message">
+        <div class="success-icon">✓</div>
+        <h2 class="step-title">¡Cita Registrada Exitosamente!</h2>
+        <p class="step-description">
+          Los datos han sido guardados correctamente
+        </p>
+        <div
+          id="resumenCita"
+          style="
+            text-align: left;
+            margin-top: 30px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+          "
+        >
+          <h3 style="color: #667eea; margin-bottom: 15px">
+            Resumen de la Cita
+          </h3>
+          <p><strong>Cliente:</strong> {{ clientFormValues.name }}</p>
+          <p><strong>Teléfono:</strong> {{ clientFormValues.phone }}</p>
+          <p>
+            <strong>Mascota:</strong> {{ petFormValues.name }} ({{
+              petFormValues.specie
+            }})
+          </p>
+          <p>
+            <strong>Fecha:</strong> {{ appointmentFormValues.date }} a las
+            {{ appointmentFormValues.hour }}
+          </p>
+          <p><strong>Tipo:</strong> {{ appointmentFormValues.type }}</p>
+        </div>
+        <button
+          class="btn-next"
+          (click)="resetForm()"
+          style="margin-top: 30px; width: auto; padding: 14px 40px"
+        >
+          Regresar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
