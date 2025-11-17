@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -20,6 +21,13 @@ export class LoginComponent implements OnInit {
     this.form = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
+    });
+
+    this.authService.health().subscribe({
+      next: () => {},
+      error: (error: HttpErrorResponse) => {
+        console.log(error);
+      },
     });
   }
 

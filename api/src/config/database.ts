@@ -1,4 +1,4 @@
-import mysql, { Connection } from 'mysql2/promise';
+import mysql, { Connection, Pool } from 'mysql2/promise';
 
 const dbConfig = {
   host: process.env.DB_HOST || 'localhost',
@@ -10,40 +10,26 @@ const dbConfig = {
 
 class Database {
   private static instance: Database | null = null;
-  private connection: Promise<Connection> | null = null;
+  private pool: Pool;
 
-  constructor() {
-    if (Database.instance) {
-      return Database.instance;
-    }
-
-    Database.instance = this;
+  private constructor() {
+    this.pool = mysql.createPool(dbConfig as any);
+    console.log('✅ MySQL pool created');
   }
 
-  async connect() {
-    if (!this.connection) {
-      try {
-        this.connection = mysql.createConnection(dbConfig as any);
-        console.log('✅ connected to MySQL');
-      } catch (error) {
-        console.error('❌ MySQL connection error');
-        throw error;
-      }
-    }
-
-    return this.connection;
-  }
-
-  static getInstance() {
+  static getInstance(): Database {
     if (!Database.instance) {
       Database.instance = new Database();
     }
-
     return Database.instance;
+  }
+
+  getPool(): Pool {
+    return this.pool;
   }
 }
 
 export const getConnection = async () => {
   const db = Database.getInstance();
-  return await db.connect();
+  return db.getPool();
 };

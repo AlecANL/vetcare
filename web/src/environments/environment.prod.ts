@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:1234/api/v1',
+  apiUrl: 'https://vetcareapi-production.up.railway.app/api/v1',
 };

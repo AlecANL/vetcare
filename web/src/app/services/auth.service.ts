@@ -11,4 +11,8 @@ export class AuthService {
   login(body: any) {
     return this.http.post<any>(`${environment.apiUrl}/auth/login`, body);
   }
+
+  health() {
+    return this.http.get('https://vetcareapi-production.up.railway.app/');
+  }
 }
