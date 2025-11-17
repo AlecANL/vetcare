@@ -5,6 +5,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+.modal-open .modal {
+  z-index: 999999;
+}
 
 :root {
   --color-primary: #2563eb;
