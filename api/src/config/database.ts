@@ -15,6 +15,7 @@ class Database {
   private constructor() {
     this.pool = mysql.createPool(dbConfig as any);
     console.log('✅ MySQL pool created');
+    console.log('ENV MYSQLHOST =', process.env.DB_HOST);
   }
 
   static getInstance(): Database {
